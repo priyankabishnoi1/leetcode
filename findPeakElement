@@ -1,0 +1,11 @@
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+
+        largest = 0
+        for index in range(len(nums)):
+            curr_ele = nums[index]
+            largest_ele = nums[largest]
+            if curr_ele > largest_ele:
+                largest = index
+            
+        return largest
