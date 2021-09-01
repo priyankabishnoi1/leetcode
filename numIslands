@@ -1,0 +1,20 @@
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        num_of_island = 0
+        for outer_grid in range(len(grid)):
+            for inner_grid in range(len(grid[outer_grid])):
+                if (grid[outer_grid][inner_grid] == "1"):
+                    
+                    self.find_island(grid, outer_grid, inner_grid)
+                    num_of_island = num_of_island + 1
+        return(num_of_island)
+    
+    def find_island(self, grid, outer_grid, inner_grid):
+        # so that we dont count the same thing again, it is a way to mark your teritory
+        grid[outer_grid][inner_grid] = "0"
+        traverse_route = [(outer_grid-1,inner_grid), (outer_grid, inner_grid+1), (outer_grid, inner_grid-1), (outer_grid+1,inner_grid)]
+
+        for row, col in traverse_route:
+            if row >= 0 and col >= 0 and row < len(grid) and col < len(grid[0]) and grid[row][col]=="1":
+                grid[row][col] = "0"
+                self.find_island(grid, row, col)
