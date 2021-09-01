@@ -1,0 +1,22 @@
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        area_of_island = 0
+        for outer_grid in range(len(grid)):
+            for inner_grid in range(len(grid[outer_grid])):
+                if (grid[outer_grid][inner_grid] == 1):
+                    area_of_island = max(area_of_island, self.find_area_of_island(grid, outer_grid, inner_grid))
+
+        return(area_of_island)
+    
+    def find_area_of_island(self, grid, outer_grid, inner_grid):
+        # so that we dont count the same thing again, it is a way to mark your teritory
+        current_area = 1
+        grid[outer_grid][inner_grid] = 0
+        traverse_route = [(outer_grid-1,inner_grid), (outer_grid, inner_grid+1), (outer_grid, inner_grid-1), (outer_grid+1,inner_grid)]
+
+        for row, col in traverse_route:
+            if row>=0 and col>=0 and row < len(grid) and col < len(grid[0]) and grid[row][col]==1:
+                current_area = current_area + self.find_area_of_island(grid, row, col)
+        return current_area
+        
+        
