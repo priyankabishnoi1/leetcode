@@ -1,0 +1,26 @@
+s = "eeceba"
+k = int(3)
+dict_store = {}
+min_index = 0
+max_len = 0
+
+for index, char in enumerate(s):
+    dict_store[char]=index;
+    
+    if len(dict_store)>k:
+        print("**************")
+        print(dict_store)
+        print("^^^^^^^^^^^^^^^")
+        print(dict_store.values())
+        min_index = min(dict_store.values())
+        print("min index which we want to release")
+        print(min_index)
+        print("element on that min index")
+        print(s[min_index])
+        del dict_store[s[min_index]]
+        print("^^^^^^^^^^^^^^^")
+        print(dict_store)
+        min_index = min_index +1
+    max_len = max(int(index) - min_index + 1, max_len)
+        
+print(max_len)
